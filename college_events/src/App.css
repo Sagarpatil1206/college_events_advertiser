@@ -1,0 +1,18 @@
+.appbar{
+  border-radius: 15;
+  margin: 30px 0px;
+  display: 'flex';
+  flex-direction: 'row';
+  justify-content: 'center';
+  align-items: 'center';
+}
+
+.heading {
+  color: rgba(0,183,255, 1)
+}
+
+.image {
+  height: 60px;
+  width:60px;
+  margin-left: 15px;
+}

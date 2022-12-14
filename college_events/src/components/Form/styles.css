@@ -1,0 +1,9 @@
+.form{
+  justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.paper{
+  padding: 18px 0px;
+}
