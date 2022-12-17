@@ -2,7 +2,7 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  justify-content:  space-between;
+  /* justify-content:  space-between; */
   border-radius: 15px;
   height: 100%;
   position: relative;
@@ -39,3 +39,7 @@
   display: flex;
   justify-content: space-between;
 }
+
+
+
+/* isLoadingTrue ? <div style={{display: 'flex', justifyContent: 'center'}}><CircularProgress/></div> : ( */

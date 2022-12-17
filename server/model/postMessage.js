@@ -9,6 +9,10 @@ const postSchema = mongoose.Schema({
     date:String,
     time:String,
     venue:String,
+    comments :{
+        type:[String],
+        default:[]
+    },
     likeCount:{
         type:Number,
         default:0,//additional information

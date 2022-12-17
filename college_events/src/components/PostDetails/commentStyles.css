@@ -1,0 +1,15 @@
+.commentsOuterSection{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.commentsInnerSection{
+  height: 200px;
+  margin-right: 30px;
+  overflow-y: auto;
+}
+
+.writeComment{
+  width: 70%;
+}

@@ -2,19 +2,21 @@ import React, { useEffect, useState } from 'react';
 import { TextField ,Button ,Typography ,Paper } from '@mui/material';
 import FileBase from 'react-file-base64'
 import { useDispatch, useSelector } from 'react-redux';
-import { createPost, updatePost } from '../../actions/postActions';
+import { createPost, getPosts, updatePost } from '../../actions/postActions';
 import './styles.css'
 
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { TimePicker } from '@mui/x-date-pickers/TimePicker';
+import { useNavigate } from 'react-router-dom';
 
 const Form = ({currentId,setCurrentId}) => {
   const dispach = useDispatch();
+  const navigate = useNavigate();
   const [postData,setPostData] = useState({organizer: "", title: "", date:null, time:"",venue:"", message: "", tags: "", event_poster:""})
   const [eTime,seteTime] = useState(null);
-  const post = useSelector((state) =>currentId ?  state.posts.find((p)=>p._id === currentId) : null)
+  const post = useSelector((state) =>currentId ?  state.posts.posts.find((p)=>p._id === currentId) : null)
 
   useEffect(()=>{
     if(post) {setPostData(post);seteTime("2022-12-11T11:55:25.896Z");}
@@ -23,10 +25,11 @@ const Form = ({currentId,setCurrentId}) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if(currentId===0){
-      dispach(createPost(postData));
+      dispach(createPost(postData,navigate));
       clear();
     }else{
       dispach(updatePost(currentId,postData));
+      dispach(getPosts());
       clear();
     }
   }
