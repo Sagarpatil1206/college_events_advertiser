@@ -3,14 +3,14 @@ import { getPosts,createPost ,likePost ,deletePost ,updatePost ,getPostsBySearch
 
 const router = express.Router();
 
-router.get("/search",getPostsBySearch);
-router.get("/:id",getPost);
-router.get("/", getPosts);
-router.post("/", createPost);
-router.patch('/:id/likePost', likePost);
-router.post("/:id/addComment",addComment)
-router.delete('/:id',deletePost);
-router.patch('/:id',updatePost)
+router.get("/posts/search",getPostsBySearch);
+router.get("/posts/:id",getPost);
+router.get("/posts/", getPosts);
+router.post("/posts/", createPost);
+router.patch('/posts/:id/likePost', likePost);
+router.post("/posts/:id/addComment",addComment)
+router.delete('/posts/:id',deletePost);
+router.patch('/posts/:id',updatePost)
 
 // router.get("/search",getPostsBySearch);
 
