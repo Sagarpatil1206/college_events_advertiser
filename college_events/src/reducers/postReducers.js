@@ -7,7 +7,6 @@ const postReducer =  (state = {posts:[],isLoadingTrue:true} , action) => { //pos
     case STOP_LOADING :
       return {...state,isLoadingTrue:false}
     case FETCH_ALL :
-      console.log(action.payload.data);
       return {
         ...state ,
         posts : action.payload.data,

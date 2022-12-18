@@ -17,7 +17,6 @@ export const getPost = (id) => async (dispatch) => {
     dispatch({type:START_LOADING});
     const data = await api.fetchPost(id);
     dispatch({ type: FETCH_POST, payload: data });
-    console.log(data);
     dispatch({type:STOP_LOADING});
   }catch(error){
     console.log(error);
@@ -30,7 +29,6 @@ export const getPostsBySearch = (searchQuery) => async(dispatch) => {
     const { data : {data}} = await api.fetchPostsBySearch(searchQuery); //first destructure as we we are getting it from axios
     //second one is because we have send it as a object where {data:posts}
     dispatch({type:FETCH_BY_SEARCH , payload: { data }})
-    console.log(data);
     dispatch({type:STOP_LOADING});
   }catch (error){
     console.log(error);
@@ -81,7 +79,6 @@ export const updatePost = (id,post,navigate) => async(dispatch) => {
 
 export const addComment = (finalComment,id) => async(dispatch) => {
   try {
-    console.log(finalComment);
     const {data} = await api.addComment(finalComment,id);
     dispatch({type:ADD_COMMENT,payload:data})
     return data.comments;
