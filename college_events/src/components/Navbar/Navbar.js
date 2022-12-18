@@ -15,9 +15,9 @@ const Navbar = () => {
         </Link>
         <div className='buttons'>
         <Link to='/' style={{textDecoration:'none'}}>
-        <Button variant='contained' style={{margin:'20px'}} >Home</Button></Link>
-        <Button variant='contained'>Sign Up</Button>
-        <Button variant='contained' style={{margin:'20px'}} >Log In</Button>
+        <Button variant='contained' style={{margin:'50px'}} >Home</Button></Link>
+        {/* <Button variant='contained'>Sign Up</Button>
+        <Button variant='contained' style={{margin:'20px'}} >Log In</Button> */}
         </div>
     </AppBar>
   );

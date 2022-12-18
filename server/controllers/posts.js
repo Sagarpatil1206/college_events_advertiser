@@ -15,7 +15,7 @@ export const getPosts = async (req,res) => {
   const {page} = req.query;
   try{
 
-    const LIMIT = 3 ; //number of posts per page
+    const LIMIT = 6 ; //number of posts per page
     const startIndex = (Number(page)-1)*LIMIT;
     const total = await PostMessage.countDocuments({});//we can pass certain conditin their but as we arent we will get the number of posts
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Card, CardActions, CardContent, CardMedia, Typography } from '@mui/material';
+import { Button, Card, CardActions, CardMedia, Typography } from '@mui/material';
 import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
 import DeleteIcon from '@mui/icons-material/Delete';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
@@ -21,6 +21,7 @@ const Post = ({post , setCurrentId}) => {
   const [likes,setLikes] = useState(post?.likeCount)
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const openPost = () => navigate(`/posts/${post._id}`)
 
   const handleLike = async() => {
@@ -28,15 +29,20 @@ const Post = ({post , setCurrentId}) => {
     setLikes(likesu);
   }
 
+  const handleEdit = () => {
+    setCurrentId(post._id);
+    alert("You can edit the required field in the form now and submit");
+  }
+
   return (
-    <Card className='card' style={{borderRadius:'15px'}} elevation={6}>
+    <Card className='card' style={{borderRadius:'15px',justifyContent:'space-between'}} elevation={6}>
     <CardMedia className='media' image={post.event_poster} title={post.title}  style={{ backgroundBlendMode : 'darken'}}/>
     <div className='overlay'>
       <Typography variant="h6">{post.organizer}</Typography>
       <Typography variant="body2">{moment(post.createdAt).fromNow()}</Typography>
     </div>
     <div className='overlay2'>
-      <Button style={{ color: 'white' }} size="small" onClick={() => {setCurrentId(post._id)}}><MoreHorizIcon /></Button>
+      <Button style={{ color: 'white' }} size="small" onClick={handleEdit}><MoreHorizIcon /></Button>
     </div>
     <ButtonBase onClick={openPost} style={{display:'block',textAlign:'initial'}}>
     <div className='tags'>
@@ -46,15 +52,19 @@ const Post = ({post , setCurrentId}) => {
     <Typography gutterBottom variant="h6" component="h2">&nbsp; <EventIcon fontSize="medium"/> Date : {post.date}</Typography>
     <Typography gutterBottom variant="h6" component="h2">&nbsp;  <AccessTimeIcon fontSize="medium"/> Time : {post.time}</Typography>
     <Typography gutterBottom variant="h6" component="h2">&nbsp; <LocationOnOutlinedIcon fontSize="medium"/> Venue : {post.venue}</Typography>
-    <CardContent>
+    <div style={{justifyContent:'space-between'}}>
+    {/* <CardContent>
       <Typography variant="body2" color="textSecondary" component="p">{post.message}</Typography>
-    </CardContent>
+    </CardContent> */}
+    </div>
     </ButtonBase>
     <CardActions className='cardactions' style={{justifyContent:'space-between'}}>
-      <Button size="small" color="primary" onClick={handleLike}><ThumbUpAltIcon fontSize="small" /> &nbsp;Like {likes} </Button>
+      <Button size="small" color="primary" onClick={handleLike} ><ThumbUpAltIcon fontSize="small" /> &nbsp;Like {likes} </Button>
       <Button size="small" color="primary" onClick={() => dispatch(deletePost(post._id))}><DeleteIcon fontSize="small" /> Delete</Button>
     </CardActions>
+    
   </Card>
+  
   );
 };
 

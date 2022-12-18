@@ -48,7 +48,7 @@ export default makeStyles((theme) => ({
 }
 
 .section{
-  margin: 10px;
+  margin: 30px;
   border-radius: 20px;
   flex: 1;
 }
@@ -71,6 +71,8 @@ export default makeStyles((theme) => ({
 
 .imageSection{
   margin-left: 20px;
+  display: flex;
+  align-items: center;
 }
 
 .smallcard{

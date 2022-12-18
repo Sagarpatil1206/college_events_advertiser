@@ -12,7 +12,6 @@ const CommentSection = ({post}) => {
   const dispatch = useDispatch();
   // const commentsRef = useRef();
   const user = 'User'
-
   const handleClick = async() => {
     const finalComment = `${user} : ${comment}`;
     const newComments = await dispatch(addComment(finalComment,post._id));
@@ -20,7 +19,6 @@ const CommentSection = ({post}) => {
     setComments(newComments);
     // commentsRef.current.scrollIntoView({ behavior : 'smooth' });
   }
-
   return (
     <div>
       <div className='commentsOuterSection'>

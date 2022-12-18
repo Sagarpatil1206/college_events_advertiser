@@ -31,8 +31,11 @@ const PostDetails = () => {
   }
 
   const recommended_posts = posts.filter((postBySearch)=> postBySearch._id !== post._id )
-  const openPost = (id) => {
-    navigate(`/posts/${id}`)
+  const openPost = (id) =>{navigate(`/posts/${id}`);window.location.reload()}
+
+  const urlify_message = (text) => {
+    var urlRegex = /(https?:\/\/[^\s]+)/g;
+    return text.replace(urlRegex, '<a href="$1">$1</a>')
   }
 
   return (
@@ -40,17 +43,20 @@ const PostDetails = () => {
         <div className='card' style={{display:'flex' ,flexDirection:'row'}}>
           <div className='section'>
             <Typography variant='h3' component='h2'>{post.title}</Typography>
+            <Typography variant='h6'>Organizer : {post.organizer}</Typography>
             <Typography variant='h6' color="textSecondary" component='h2'>{post.tags.map((tag)=> `#${tag} `)}</Typography>
-            <Typography variant='body1' component='p'>{post.message}</Typography>
-            <Typography variant='h6'>Created by : {post.organizer}</Typography>
-            <Typography variant='body1'>{moment(post.createdAt).fromNow()}</Typography>
+            <Typography variant='body1' component='p' style={{whiteSpace:'pre-wrap'}} dangerouslySetInnerHTML={{ __html: urlify_message(post.message) }}/>
+            
+            <Typography variant='body1'>Created {moment(post.createdAt).fromNow()}</Typography>
             <Divider style={{margin:'20px 0'}}/>
-            <CommentSection post={post}/>
+
+            <CommentSection post={post} id={post._id}/>
+
             {/* <Typography variant='body1'><strong>Comment - comming soon !!!</strong></Typography> */}
             <Divider style={{margin:'20px 0'}}/>
           </div>
-          <div className='imagesection'>
-            <img src={post.event_poster} alt={post.title} style={{borderRadius:'20px',objectFit:'cover',width:'100%',maxHeight:'320px',}}/>
+          <div className='imagesection' style={{marginTop:'120px'}}>
+            <img src={post.event_poster} alt={post.title} style={{borderRadius:'20px',objectFit:'cover',width:'100%',maxHeight:'380px',minWidth:'500px'}}/>
           </div>
         </div>
         {
@@ -67,11 +73,10 @@ const PostDetails = () => {
 
                     <Paper style={{padding:'10px',borderRadius:'12px'}} elevation={2}>
                       <Typography gutterBottom variant='h6'>{title}</Typography>
-                      <div style={{textAlign:'left'}}><Typography gutterBottom variant='subtitle2'>{message}</Typography></div>
+                      <div style={{textAlign:'left'}}><Typography gutterBottom variant='subtitle2'>{message.substring(0,200)}...</Typography></div>
                       <Typography gutterBottom variant='subtitle1'>Likes : {likeCount}</Typography>
                       <img src={event_poster} width='200px' style={{ maxHeight:'110px',textAlign:'center' }} alt=""/>
                     </Paper>
-                    
                   </div>
                 ))}
               </div>

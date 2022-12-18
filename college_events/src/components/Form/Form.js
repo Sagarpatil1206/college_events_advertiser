@@ -28,7 +28,7 @@ const Form = ({currentId,setCurrentId}) => {
       dispach(createPost(postData,navigate));
       clear();
     }else{
-      dispach(updatePost(currentId,postData));
+      dispach(updatePost(currentId,postData,navigate));
       dispach(getPosts());
       clear();
     }
@@ -51,7 +51,7 @@ const Form = ({currentId,setCurrentId}) => {
             label="Date Picker"
             value={postData.date}
             onChange={(e) => setPostData({ ...postData, date:new Date(e).toDateString() })}
-            renderInput={(params) => <TextField style={{margin:'8px 0px'}} fullWidth {...params} />}/>
+            renderInput={(params) => <TextField style={{margin:'8px 0px'}} fullWidth {...params} helperText='click on Icon to select date'/>}/>
         </LocalizationProvider>
         {/* <TextField name="date" variant="outlined" label="Date" fullWidth value={postData.date} onChange={(e) => setPostData({ ...postData, date: e.target.value })} style={{margin:'8px 0px'}}/> */}
         <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -59,7 +59,7 @@ const Form = ({currentId,setCurrentId}) => {
             label="Time Picker"
             value={eTime}
             onChange={(e) => {setPostData({ ...postData, time:new Date(e).toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true }) });seteTime(e);}}
-            renderInput={(params) => <TextField style={{margin:'8px 0px'}} fullWidth {...params} />}
+            renderInput={(params) => <TextField style={{margin:'8px 0px'}} fullWidth {...params} helperText='click on Icon to select time'/>}
           />
         </LocalizationProvider>
         {/* <TextField name="time" variant="outlined" label="Time" fullWidth value={postData.time} onChange={(e) => setPostData({ ...postData, time: e.target.value })} style={{margin:'8px 0px'}}/> */}
