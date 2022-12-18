@@ -16,11 +16,11 @@ app.use(bodyParser.urlencoded({ limit: '30mb', extended: true }))
 app.use(cors());
 
 app.use('/posts', router);
-
-app.use(express.static(path.join(__dirname,"../college_events/build")));
+import './college_events/build/index.html'
+app.use(express.static(path.join(__dirname,"./college_events/build")));
 app.get("*",function(_,res){
   res.sendFile(
-    path.join(__dirname,"../college_events/build/index.html"),
+    path.join(__dirname,"./college_events/build/index.html"),
     function(err){
       res.status(500).send(err);
     }
