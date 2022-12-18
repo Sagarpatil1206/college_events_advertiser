@@ -7,8 +7,6 @@ import path from 'path'
 
 import router from "./routes/postRoutes.js";
 
-
-
 const app = express();
 const __dirname = path.resolve();
 dotenv.config();
@@ -18,16 +16,13 @@ app.use(bodyParser.urlencoded({ limit: '30mb', extended: true }))
 app.use(cors());
 
 app.use('/posts', router);
-var filePath = "./college_events/build/index.html";
-var resolvedPath = path.resolve(filePath);
-
 app.use(express.static(path.join(__dirname,"./college_events/build")));
-app.get("*",function(_,res){
+app.get("*",function(req,res){
   res.sendFile(
-    path.join(resolvedPath),
-    function(err){
-      res.status(500).send(err);
-    }
+    path.join(__dirname,"./college_events/build/index.html"),
+    // function(err){
+    //   res.status(500).send(err);
+    // }
   );
 });
 
@@ -39,4 +34,3 @@ mongoose.connect(process.env.CONNECTION_URL, { useNewUrlParser: true, useUnified
   .then(() => app.listen(PORT, () => console.log(`Server Running successfully on Port ${PORT}`)))
   .catch((error) => console.log(`${error} did not connect`));
 
-// return res.sendFile(resolvedPath);
