@@ -16,7 +16,6 @@ app.use(bodyParser.urlencoded({ limit: '30mb', extended: true }))
 app.use(cors());
 
 app.use('/posts', router);
-import './college_events/build/index.html'
 app.use(express.static(path.join(__dirname,"./college_events/build")));
 app.get("*",function(_,res){
   res.sendFile(
