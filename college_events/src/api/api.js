@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const url = 'https://college-events.cyclic.app/posts'
+const url = "http://localhost:5000/posts";
 
 export const fetchPosts = (page) => axios.get(`${url}?page=${page}`);
 export const fetchPost = (id) => axios.get(`${url}/${id}`)
