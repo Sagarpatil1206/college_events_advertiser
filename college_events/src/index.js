@@ -6,6 +6,9 @@ import { Provider } from 'react-redux';
 import {createStore,applyMiddleware,compose} from 'redux'
 import thunk from 'redux-thunk'
 import reducers from './reducers';
+import {disableReactDevTools} from '@fvilers/disable-react-devtools'
+
+if(process.env.NODE_ENV === 'production') disableReactDevTools();
 
 const store = createStore(reducers, compose(applyMiddleware(thunk)));
 const root = ReactDOM.createRoot(document.getElementById('root'));
