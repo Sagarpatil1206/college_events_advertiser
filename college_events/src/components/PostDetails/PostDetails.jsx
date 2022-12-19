@@ -31,7 +31,7 @@ const PostDetails = () => {
   }
 
   const recommended_posts = posts.filter((postBySearch)=> postBySearch._id !== post._id )
-const openPost = (id) =>{navigate(`/posts/${id}`);/*window.location.reload()*/}
+  const openPost = (id) => navigate(`/posts/${id}`);
 
   const urlify_message = (text) => {
     var urlRegex = /(https?:\/\/[^\s]+)/g;
@@ -50,7 +50,7 @@ const openPost = (id) =>{navigate(`/posts/${id}`);/*window.location.reload()*/}
             <Typography variant='body1'>Created {moment(post.createdAt).fromNow()}</Typography>
             <Divider style={{margin:'20px 0'}}/>
 
-            <CommentSection post={post} id={post._id}/>
+            <CommentSection post={post} key={post._id}/>
 
             {/* <Typography variant='body1'><strong>Comment - comming soon !!!</strong></Typography> */}
             <Divider style={{margin:'20px 0'}}/>
