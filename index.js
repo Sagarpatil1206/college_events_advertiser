@@ -28,7 +28,7 @@ app.get("*",function(req,res){
 
 // const CONNECTION_URL = 'mongodb+srv://sagarpatil1206:Sagar@1206@cluster0.n0l2nh1.mongodb.net/?retryWrites=true&w=majority';
 mongoose.set("strictQuery", false);
-const PORT = process.env.PORT|| 5000;
+const PORT = process.env.PORT;
 
 mongoose.connect(process.env.CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => app.listen(PORT, () => console.log(`Server Running successfully on Port ${PORT}`)))
