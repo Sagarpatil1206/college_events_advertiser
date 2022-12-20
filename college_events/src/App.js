@@ -5,6 +5,7 @@ import Home from './components/Home/Home';
 import Navbar from './components/Navbar/Navbar';
 import PostDetails from './components/PostDetails/PostDetails';
 import NoMatch from './pictures/NoMatch';
+import NoSearchMatch from './pictures/NoSearchMatch';
 
 const App = () => {
   return (
@@ -14,6 +15,7 @@ const App = () => {
         <Routes>
           <Route path='/posts' index element={<Home/>}></Route>
           <Route path='/' element={<Navigate to='/posts' replace/>}></Route>
+          <Route path='/posts/search/notmatch' element={<NoSearchMatch/>}></Route>
           <Route path='/posts/search' element={<Home/>}></Route>
           <Route path='/posts/:id' element={<PostDetails/>}></Route>
           <Route path='*' element = {<NoMatch/>} ></Route>

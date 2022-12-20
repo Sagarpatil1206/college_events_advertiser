@@ -1,6 +1,7 @@
 import axios from 'axios'
 
-const url = "https://college-events.onrender.com/api/posts";
+const url = "http://localhost:5000/api/posts";
+// const url = "https://college-events.onrender.com/posts";
 
 export const fetchPosts = (page) => axios.get(`${url}?page=${page}`);
 export const fetchPost = (id) => axios.get(`${url}/${id}`)

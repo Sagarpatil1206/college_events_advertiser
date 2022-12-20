@@ -4,7 +4,7 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
-import { getPost, getPostsBySearch } from '../../actions/postActions';
+import { getPost } from '../../actions/postActions';
 import CommentSection from './CommentSection';
 import './styles.css'
 
@@ -18,9 +18,9 @@ const PostDetails = () => {
     dispatch(getPost(id))
   },[dispatch,id])
 
-  useEffect(()=>{
-  dispatch(getPostsBySearch({search:'none',tags:post?.tags.join(',')})); //  (?) checks if tags are present only then go furthur
-  },[post,dispatch])
+  // useEffect(()=>{
+  // dispatch(getPostsBySearch({search:'none',tags:post?.tags.join(',')})); //  (?) checks if tags are present only then go furthur
+  // },[post,dispatch])
 
   if(!post) {console.log("no post"); return null;}
 
@@ -31,7 +31,7 @@ const PostDetails = () => {
   }
 
   const recommended_posts = posts.filter((postBySearch)=> postBySearch._id !== post._id )
-const openPost = (id) =>{navigate(`/posts/${id}`);/*window.location.reload()*/}
+  const openPost = (id) =>{navigate(`/posts/${id}`);/*window.location.reload()*/}
 
   const urlify_message = (text) => {
     var urlRegex = /(https?:\/\/[^\s]+)/g;
@@ -50,7 +50,7 @@ const openPost = (id) =>{navigate(`/posts/${id}`);/*window.location.reload()*/}
             <Typography variant='body1'>Created {moment(post.createdAt).fromNow()}</Typography>
             <Divider style={{margin:'20px 0'}}/>
 
-            <CommentSection post={post} id={post._id}/>
+            <CommentSection post={post} key={post._id}/>
 
             {/* <Typography variant='body1'><strong>Comment - comming soon !!!</strong></Typography> */}
             <Divider style={{margin:'20px 0'}}/>
