@@ -31,7 +31,7 @@ const PostDetails = () => {
   }
 
   const recommended_posts = posts.filter((postBySearch)=> postBySearch._id !== post._id )
-  const openPost = (id) =>{navigate(`/posts/${id}`);/*window.location.reload()*/}
+  const openPost = (id) => navigate(`/posts/${id}`);
 
   const urlify_message = (text) => {
     var urlRegex = /(https?:\/\/[^\s]+)/g;
