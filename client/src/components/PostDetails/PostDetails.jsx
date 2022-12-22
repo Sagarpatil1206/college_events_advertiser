@@ -60,7 +60,7 @@ const PostDetails = () => {
             <Divider style={{margin:'20px 0'}}/>
           </div>
           <div className='imagesection' style={{marginTop:'120px'}}>
-            <img src={post.event_poster} alt={post.title} style={{borderRadius:'20px',objectFit:'cover',width:'100%',maxHeight:'380px',minWidth:'500px'}}/>
+            <img src={post.event_poster} alt={post.title} style={{borderRadius:'20px',objectFit:'cover',width:'100%',maxHeight:'500px',minWidth:'500px'}}/>
           </div>
         </div>
         {
