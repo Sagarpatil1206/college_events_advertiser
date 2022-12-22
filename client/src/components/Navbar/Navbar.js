@@ -7,6 +7,7 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { LOGOUT } from '../../actions/actionTypes';
+import decode from 'jwt-decode'
 
 const Navbar = () => {
   const [user,setUser] = useState(JSON.parse(localStorage.getItem('profile')));
@@ -15,6 +16,7 @@ const Navbar = () => {
   const location = useLocation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const logoutHandler = () => {
     dispatch({type:LOGOUT});
     navigate('/');
@@ -23,6 +25,13 @@ const Navbar = () => {
 
   useEffect(()=>{
     setUser(JSON.parse(localStorage.getItem('profile')));
+    const token = user?.token;
+    if(token){
+      const decoded_token = decode(token);
+      if((decoded_token.exp*1000)<(new Date().getTime())){
+        logoutHandler();
+      }
+    }
   },[location])
 
   const handleClickOpen = () => {
