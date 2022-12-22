@@ -48,12 +48,12 @@ const Navbar = () => {
       open={open}
       onClose={handleClose}>
       <DialogContent>
-        <DialogTitle style={{display:'flex',justifyContent:'center',fontSize:'21px'}}>
+        <DialogTitle style={{display:'flex',justifyContent:'center',fontSize:'22px'}}>
           Logout ?
         </DialogTitle>
         <DialogContent>
-        <DialogContentText style={{fontSize:'17px'}}>Are you sure you want to log out ?</DialogContentText></DialogContent>
-        <div style={{display:'flex',justifyContent:'space-around'}}>
+        <DialogContentText style={{fontSize:'18px'}}>Are you sure you want to log out ?</DialogContentText></DialogContent>
+        <div style={{display:'flex',justifyContent:'space-evenly'}}>
         <Button variant="contained" color="primary" onClick={()=>{handleClose();logoutHandler()}}>Yes</Button>
         <Button variant="contained" color="primary" onClick={()=>{handleClose()}}>No</Button>
         </div>
@@ -62,8 +62,8 @@ const Navbar = () => {
     <AppBar className='appbar' position="static" color="inherit" style={{display:'flex' , flexDirection:'row' ,borderRadius:'15px',margin:'30px 8px',padding:'5px 60px',alignItems:'center'}}>
       <div className='brandContainer'>
         <Link to='/' style={{display:'flex',alignItems:'center',textDecoration:'none',color:'black'}}>
+        <img className='image' src={pict_logo} alt='pict_logo' height="80px" width="80px" style={{margin:'5px 15px'}}></img>
           <Typography className='heading' variant='h3' align='center' width='315px'>PICT EVENTS</Typography>
-          <img className='image' src={pict_logo} alt='pict_logo' height="80px" width="80px" style={{margin:'5px 15px'}}></img>
         </Link>
       </div>
       <Toolbar className='toolbar'>

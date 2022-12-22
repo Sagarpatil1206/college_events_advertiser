@@ -7,7 +7,7 @@ const auth = (req,res,next) => {
     
     let decodedData ;
     if(token && isCustomAuth){
-      decodedData = jwt.verify(token,'test');
+      decodedData = jwt.verify(token,process.env.secret);
       // console.log(decodedData);
       req.userId = decodedData?.id;
     }else{

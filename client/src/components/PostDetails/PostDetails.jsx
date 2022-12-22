@@ -28,9 +28,9 @@ const PostDetails = () => {
 
   if(isLoadingTrue){
     return (
-    <paper elevation={6} className='loadingpaper'>
+    <Paper elevation={6} className='loadingpaper'>
       <CircularProgress size={"5em"}/>
-    </paper>
+    </Paper>
     )
   }
 

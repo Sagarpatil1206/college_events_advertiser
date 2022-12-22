@@ -3,6 +3,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  border-radius: 20px;
   /* padding: 50px; */
 }
 
@@ -13,6 +14,13 @@
 
 .form {
   margin-top: 24px;
+}
+
+.progress{
+  height: 500px;
+  display : flex;
+  justify-content : center;
+  transform: translateY(45%);
 }
 
 /* .submit{

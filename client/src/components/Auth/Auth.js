@@ -1,7 +1,7 @@
-import { Avatar, Button, Container, Grid, Paper, Typography } from '@mui/material';
+import { Alert, Avatar, Button, CircularProgress, Container, Grid, Paper, Typography } from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import React, { useState } from 'react';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {GoogleLogin} from '@react-oauth/google'
 import { GoogleOAuthProvider } from '@react-oauth/google';
 // import GoogleButton from 'react-google-button'
@@ -23,6 +23,7 @@ const Auth = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleShowPassword = () => setShowPassword(!showPassword);
+  const {errorMessage , isLoadingTrue} = useSelector((state)=> state?.auth);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -53,14 +54,18 @@ const Auth = () => {
   const googleError = (error) => {
     console.log("Google sign in unsuccessfull. "+error);
   }
+
+  if(isLoadingTrue) return (<div className='progress'><CircularProgress size='4em'/></div>)
+
   return (
     <div className='maindiv'>
     <Container component="main" maxWidth='xs' className='root'>
-      <Paper className='paper' elevation={3} style={{padding:'16px'}}>
+      <Paper className='paper' elevation={3} style={{padding:'16px',borderRadius:'7px'}}>
         <Avatar style={{backgroundColor:'#f83636',margin:'8px'}}>
           <LockOutlinedIcon/>
         </Avatar>
         <Typography variant='h5'>{isSignUp ? `Sign Up` : `Sign In`}</Typography>
+        {errorMessage?.length && <Alert severity="warning" style={{marginTop:'10px'}}>{errorMessage}</Alert>}
         <form className='form' onSubmit={handleSubmit} style={{width:'100%'}}>
           <Grid container spacing={2}>
             {
