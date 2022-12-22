@@ -11,7 +11,7 @@ import { LOGOUT } from '../../actions/actionTypes';
 const Navbar = () => {
   const [user,setUser] = useState(JSON.parse(localStorage.getItem('profile')));
   const [open,setOpen] = useState(false);
-  console.log(user);
+  // console.log(user);
   const location = useLocation();
   const dispatch = useDispatch();
   const navigate = useNavigate();

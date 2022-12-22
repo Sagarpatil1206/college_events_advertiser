@@ -1,6 +1,7 @@
 import axios from 'axios'
 
-const API = axios.create({baseURL:"https://college-events.onrender.com/api/posts"});
+// const API = axios.create({baseURL:"http://localhost:5000/api"});
+const API = axios.create({baseURL:"http://localhost:5000/api"});
 // const url = "https://college-events.onrender.com/api/posts";
 
 API.interceptors.request.use((req)=>{
