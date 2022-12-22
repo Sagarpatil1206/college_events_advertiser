@@ -64,7 +64,6 @@ const Home = () => {
               <Paper elevation={6}>
                 <Paginate page={page}/>
               </Paper>
-
               <AppBar position='static' color='inherit' style={{padding:'8px 16px 16px',marginBottom:'1rem',borderRadius:'4',display:'flex'}}>
                 <Typography gutterBottom variant='h6' align='center'>Search Event</Typography>
                 <TextField name='search' variant='outlined' label='Enter event title' fullWidth value={search} onChange={(e)=>setSearch(e.target.value)}

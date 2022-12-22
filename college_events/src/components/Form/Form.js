@@ -18,6 +18,8 @@ const Form = ({currentId,setCurrentId}) => {
   const [eTime,seteTime] = useState(null);
   const post = useSelector((state) =>currentId ?  state.posts.posts.find((p)=>p._id === currentId) : null)
 
+  const user  = JSON.parse(localStorage.getItem('profile'));
+
   useEffect(()=>{
     if(post) {setPostData(post);seteTime("2022-12-11T11:55:25.896Z");}
   },[post])
@@ -40,9 +42,22 @@ const Form = ({currentId,setCurrentId}) => {
     setPostData({organizer: "", title: "", date:null, time:null,venue:"", message: "", tags: "", event_poster:""})
   }
 
+  if(!user?.result?.name){
+    return(
+      <Paper className='paper'>
+        <Typography variant='h6' align='center'>
+          Please sign in to <br/>
+          1) Create your own events and like other's events <br/>
+          2) Delete or update events created by you. <br/>
+          3) Add comments on any event.
+        </Typography>
+      </Paper>
+    )
+  }
+
   return (
-      <Paper className='paper' style={{padding: '16px 16px'}}>
-        <form autoComplete="off" noValidate className='form' onSubmit={handleSubmit}>
+      <Paper className='paper' style={{padding: '10px 16px 16px 16px',marginTop:'32px'}}>
+        <form  style={{marginTop:'12px'}} autoComplete="off" noValidate className='form' onSubmit={handleSubmit}>
         <Typography variant="h6">{currentId ? `Editing` : `Creating`} a College Event</Typography>
         <TextField name="organizer" variant="outlined" label="Organizer" fullWidth value={postData.organizer} onChange={(e) => setPostData({ ...postData, organizer: e.target.value })} style={{margin:'8px 0'}}/>
         <TextField name="title" variant="outlined" label="Title" fullWidth value={postData.title} onChange={(e) => setPostData({ ...postData, title: e.target.value })} style={{margin:'8px 0px'}}/>

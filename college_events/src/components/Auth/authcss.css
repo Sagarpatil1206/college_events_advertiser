@@ -1,0 +1,24 @@
+.paper{
+  margin-top: 64px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* padding: 50px; */
+}
+
+.avatar {
+  margin: 8px;
+  background-color: #f83636,
+}
+
+.form {
+  margin-top: 24px;
+}
+
+/* .submit{
+  margin: 24px 0px 16px 0px;
+} */
+
+.googleButton{
+  margin-bottom: 16px,
+}

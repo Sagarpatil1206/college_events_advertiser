@@ -4,6 +4,7 @@ const postSchema = mongoose.Schema({
     title:String,
     message:String,
     organizer:String,
+    creator:String,
     tags:[String],
     event_poster:String,//convert image into string
     date:String,
@@ -13,9 +14,9 @@ const postSchema = mongoose.Schema({
         type:[String],
         default:[]
     },
-    likeCount:{
-        type:Number,
-        default:0,//additional information
+    likes:{
+        type:[String],
+        default:[]
     },
     createdAt:{
         type:Date,

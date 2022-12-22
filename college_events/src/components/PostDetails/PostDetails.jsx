@@ -1,6 +1,6 @@
 import { CircularProgress, Divider, Paper, Typography } from '@mui/material';
 import moment from 'moment';
-import React from 'react';
+import React, { useRef } from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -9,10 +9,12 @@ import CommentSection from './CommentSection';
 import './styles.css'
 
 const PostDetails = () => {
-  const {post,posts,isLoading} = useSelector((state)=>state.posts);
+  const {post,posts,isLoadingTrue} = useSelector((state)=>state.posts);
+  
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const {id} = useParams();
+  const scrollToRef = useRef();
 
   useEffect(()=> {
     dispatch(getPost(id))
@@ -24,14 +26,16 @@ const PostDetails = () => {
 
   if(!post) {console.log("no post"); return null;}
 
-  if(isLoading){
+  if(isLoadingTrue){
+    return (
     <paper elevation={6} className='loadingpaper'>
-      <CircularProgress size={"7em"}/>
+      <CircularProgress size={"5em"}/>
     </paper>
+    )
   }
 
   const recommended_posts = posts.filter((postBySearch)=> postBySearch._id !== post._id )
-  const openPost = (id) => navigate(`/posts/${id}`);
+  const openPost = (id) => {navigate(`/posts/${id}`);scrollToRef.current.scrollIntoView()};
 
   const urlify_message = (text) => {
     var urlRegex = /(https?:\/\/[^\s]+)/g;
@@ -41,7 +45,7 @@ const PostDetails = () => {
   return (
     <Paper elevation={6} className='mainpaper'>
         <div className='card' style={{display:'flex' ,flexDirection:'row'}}>
-          <div className='section'>
+          <div className='section' ref={scrollToRef}>
             <Typography variant='h3' component='h2'>{post.title}</Typography>
             <Typography variant='h6'>Organizer : {post.organizer}</Typography>
             <Typography variant='h6' color="textSecondary" component='h2'>{post.tags.map((tag)=> `#${tag} `)}</Typography>
@@ -62,7 +66,7 @@ const PostDetails = () => {
         {
           recommended_posts.length && ( //if recommended_posts is true only then check next
             <div> {/* for whole recommended posts section */}
-              <Typography gutterBottom variant='h5'>You may also like :</Typography>
+              <Typography gutterBottom variant='h5' marginLeft={1}>You may also like :</Typography>
               <Divider/>
 
               <div style={{display:'flex',flexWrap:'wrap'}}>{/*for recommended posts */}

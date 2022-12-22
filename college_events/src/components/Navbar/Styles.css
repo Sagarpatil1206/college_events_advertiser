@@ -9,8 +9,39 @@
 //   align-items: 'center';
 // } */
 
+.toolbar{
+  display: flex;
+  justify-content: flex-end;
+  width:400px
+}
+.profile{
+  display: flex;
+  justify-content:space-between;
+  width: 300px;
+}
+/*
+.userName{
+  display:flex;
+  alignItems:center
+}
+.brandContainer{
+  display: flex;
+  alignItems: center;
+}
+*/
+.purple{
+  color: rgb(135, 21, 135);
+  /* background-color: purple; */
+}
+
+.toolbar{
+  display: flex;
+  justify-content: flex-end;
+  width: 880px
+}
+
 .buttons{
-  position: absolute;
+  /* position: absolute; */
   right:100px;
-  
+  text-decoration: none;
 }

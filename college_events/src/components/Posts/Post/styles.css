@@ -22,9 +22,10 @@
 }
 .overlay2{
   position: absolute;
-  top: 20px;
-  right: 20px;
-  color: white;
+  top: 10px;
+  right: 35px;
+  color: #ffffff;
+  width: 25px;
 }
 .tags {
   display: flex;

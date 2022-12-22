@@ -1,6 +1,7 @@
 import { Container } from '@mui/material';
 import React from 'react';
 import { Routes ,Route, BrowserRouter, Navigate } from 'react-router-dom';
+import Auth from './components/Auth/Auth';
 import Home from './components/Home/Home';
 import Navbar from './components/Navbar/Navbar';
 import PostDetails from './components/PostDetails/PostDetails';
@@ -15,6 +16,7 @@ const App = () => {
         <Routes>
           <Route path='/posts' index element={<Home/>}></Route>
           <Route path='/' element={<Navigate to='/posts' replace/>}></Route>
+          <Route path='/auth' element={<Auth/>}></Route>
           <Route path='/posts/search/notmatch' element={<NoSearchMatch/>}></Route>
           <Route path='/posts/search' element={<Home/>}></Route>
           <Route path='/posts/:id' element={<PostDetails/>}></Route>
