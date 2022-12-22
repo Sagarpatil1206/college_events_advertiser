@@ -5,6 +5,7 @@ export const signin = (formData,navigate) => async (dispatch) => {
   try {
     dispatch({type:START_LOADING});
     const { data } = await api.signin(formData);
+    console.log(data);
     dispatch({type:AUTH,payload:data});
     dispatch({type:STOP_LOADING});
     navigate('/');
