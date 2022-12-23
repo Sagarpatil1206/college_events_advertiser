@@ -59,7 +59,8 @@ const Navbar = () => {
         </div>
       </DialogContent>
     </Dialog>
-    <AppBar className='appbar' position="static" color="inherit" style={{display:'flex' , flexDirection:'row' ,borderRadius:'15px',margin:'30px 8px',padding:'5px 60px',alignItems:'center'}}>
+    <AppBar className='appbar' position="static" color="inherit" 
+      style={{display:'flex' , flexDirection:'row' ,borderRadius:'15px',margin:'30px 8px',padding:'5px 60px',alignItems:'center'}}>
       <div className='brandContainer'>
         <Link to='/' style={{display:'flex',alignItems:'center',textDecoration:'none',color:'black'}}>
         <img className='image' src={pict_logo} alt='pict_logo' height="80px" width="80px" style={{margin:'5px 15px'}}></img>

@@ -83,7 +83,7 @@ const Post = ({ post, setCurrentId }) => {
         onClose={handleClose}>
         <DialogContent color="black">
           <DialogTitle>
-            Form is autofilled with existing information now.<br/>Edit the required fields in the form and click submit.
+            Form is autofilled with existing information of this event now.<br/>Edit the required fields in the form and click submit.
           </DialogTitle>
           <div style={{display:'flex',justifyContent:'center'}}>
           <Button variant="contained" color="primary" onClick={handleClose}>Ok</Button>
@@ -137,14 +137,14 @@ const Post = ({ post, setCurrentId }) => {
         >
           {post.title}
         </Typography>
-        <Typography gutterBottom variant="h6" component="h2">
-          &nbsp; <EventIcon fontSize="medium" /> Date : {post.date}
+        <Typography gutterBottom variant="h6" component="h2" style={{display:'flex',justifyContent:'left',marginLeft:'5px'}}>
+          &nbsp; <EventIcon fontSize="medium" style={{margin:'5px 5px 0 0'}}/> Date : {post.date}
         </Typography>
-        <Typography gutterBottom variant="h6" component="h2">
-          &nbsp; <AccessTimeIcon fontSize="medium" /> Time : {post.time}
+        <Typography gutterBottom variant="h6" component="h2" style={{display:'flex',justifyContent:'left',marginLeft:'5px'}}>
+          &nbsp; <AccessTimeIcon fontSize="medium" style={{margin:'5px 5px 0 0'}}/> Time : {post.time}
         </Typography>
-        <Typography gutterBottom variant="h6" component="h2">
-          &nbsp; <LocationOnOutlinedIcon fontSize="medium" /> Venue :{" "}
+        <Typography gutterBottom variant="h6" component="h2" style={{display:'flex',justifyContent:'left',marginLeft:'5px'}}>
+          &nbsp; <LocationOnOutlinedIcon fontSize="medium" style={{margin:'5px 5px 0 0'}}/> Venue :{" "}
           {post.venue}
         </Typography>
         <div style={{ justifyContent: "space-between" }}>
