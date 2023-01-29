@@ -24,6 +24,7 @@ const Auth = () => {
   const navigate = useNavigate();
   const handleShowPassword = () => setShowPassword(!showPassword);
   const {errorMessage , isLoadingTrue} = useSelector((state)=> state?.auth);
+  //retrieving the errormessage and loadingstate from auth state
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -57,6 +58,7 @@ const Auth = () => {
 
   if(isLoadingTrue) return (<div className='progress'><CircularProgress size='4em'/></div>)
 
+  //code for authorization form(sign up/sign in)
   return (
     <div className='maindiv'>
     <Container component="main" maxWidth='xs' className='root'>
@@ -64,20 +66,27 @@ const Auth = () => {
         <Avatar style={{backgroundColor:'#f83636',margin:'8px'}}>
           <LockOutlinedIcon/>
         </Avatar>
-        <Typography variant='h5'>{isSignUp ? `Sign Up` : `Sign In`}</Typography>
+        <Typography variant='h5'>{isSignUp ? `Sign Up` : `Sign In`}</Typography> 
+        {/*if the user is in signUp mode isSignUp will be true else false */}
+
         {errorMessage?.length && <Alert severity="warning" style={{marginTop:'10px'}}>{errorMessage}</Alert>}
+        {/*Displaying the error message if there's any as an alert*/}
+
+        {/*Form starts from here*/}
         <form className='form' onSubmit={handleSubmit} style={{width:'100%'}}>
-          <Grid container spacing={2}>
+          <Grid container spacing={2}> {/*spacing={1} is of 8px*/}
             {
-              isSignUp && (
+              isSignUp && ( //if sign up mode is present only then do this
                 <>
                   <Input name='firstName' label="First Name" handleChange={handleChange} autoFocus half/>
+                  {/* Input is define in input.js in same folder */}
                   <Input name='lastName' label="Last Name" handleChange={handleChange} half/>
                 </>
               )
             }
             <Input name="email" label="Email Address" handleChange={handleChange} type="email"/>
             <Input name="password" label="Password" handleChange={handleChange} type={showPassword ? 'text' : 'password'} handleShowPassword={handleShowPassword}/>
+            {/*Here in password if we click on icon showPassword become text which will be shown and if type=password password will be hidden */}
             {
               isSignUp && 
               <Input name="confirmPassword" label="Confirm Password" handleChange={handleChange} type="password"/>
@@ -87,6 +96,7 @@ const Auth = () => {
             {isSignUp ? 'Sign Up' : 'Sign In'}
           </Button>
 
+          {/*Google authorization code*/}
           <GoogleOAuthProvider style={{margin:'100px'}}>
           <GoogleLogin client_id='194974084529-b573d191ilvmt6s058rtqfmjd3uugo3b.apps.googleusercontent.com'
           onSuccess={googleSuccess} onFailure={googleError} cookiePolicy='single_host_origin'/>

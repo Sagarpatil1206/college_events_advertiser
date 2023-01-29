@@ -73,11 +73,12 @@ const Post = ({ post, setCurrentId }) => {
     }
   };
 
-  const flag =
+  const flag = //this is the flag to tell that if the user logged in is the user who created that post
     user?.result?.sub === post.creator || user?.result?._id === post.creator;
-
+    //first one is for google and second one is for customautht
   return (
     <>
+    {/*This dialog box will pop up after clicking on update/Edit icon*/}
     <Dialog
         open={open}
         onClose={handleClose}>
@@ -90,6 +91,8 @@ const Post = ({ post, setCurrentId }) => {
           </div>
         </DialogContent>
       </Dialog>
+    
+    {/* Card card - individual post cost*/}
     <Card
       className="card"
       style={{ borderRadius: "15px", justifyContent: "space-between" }}
@@ -99,7 +102,7 @@ const Post = ({ post, setCurrentId }) => {
         className="media"
         image={post.event_poster}
         title={post.title}
-        style={{ backgroundBlendMode: "darken" }}
+        style={{ backgroundBlendMode: "darken" }}//this makes the event poster on card little greyish
       />
       <div className="overlay">
         <Typography variant="h6">{post.organizer}</Typography>
@@ -107,7 +110,7 @@ const Post = ({ post, setCurrentId }) => {
           {moment(post.createdAt).fromNow()}
         </Typography>
       </div>
-      {flag && (
+      {flag && ( //render the edit icon / feature only if user who has logged in is the pne who created the event
         <div className="overlay2">
           <Button
             style={{ color: "white" }}
@@ -153,6 +156,8 @@ const Post = ({ post, setCurrentId }) => {
     </CardContent> */}
         </div>
       </ButtonBase>
+
+      {/*section with like and delete functionality*/}
       <CardActions
         className="cardactions"
         style={{ justifyContent: "space-between" }}
@@ -161,12 +166,12 @@ const Post = ({ post, setCurrentId }) => {
           size="small"
           color="primary"
           onClick={handleLike}
-          disabled={!user?.result}
+          disabled={!user?.result} //if not logged in then we are disabling the like functionality
         >
           {" "}
           <Likes />{" "}
         </Button>
-        {flag && (
+        {flag && ( 
           <Button
             size="small"
             color="primary"

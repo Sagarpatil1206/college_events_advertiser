@@ -12,36 +12,46 @@ import { TimePicker } from '@mui/x-date-pickers/TimePicker';
 import { useNavigate } from 'react-router-dom';
 
 const Form = ({currentId,setCurrentId}) => {
-  const dispach = useDispatch();
-  const navigate = useNavigate();
+  const dispach = useDispatch();//to dispatch actions
+  const navigate = useNavigate();//to navigate to desired URL location
   const [postData,setPostData] = useState({organizer: "", title: "", date:null, time:"",venue:"", message: "", tags: "", event_poster:""})
+  //contains data require for a card
   const [eTime,seteTime] = useState(null);
+
   const post = useSelector((state) =>currentId ?  state.posts.posts.find((p)=>p._id === currentId) : null)
+  //useselector allows us to extract data from the Redux store state
+  //if currentId is set then we will findout the post with current Id and set its info in the form so form will be autofilled with that post's info
 
   const user  = JSON.parse(localStorage.getItem('profile'));
+  //getting user from localstorage
 
   useEffect(()=>{
     if(post) {setPostData(post);seteTime("2022-12-11T11:55:25.896Z");}
-  },[post])
+  },[post])//settting post for updation
 
+  //on submit may be intend to 
+  //1)create post
+  //2)Update/Edit it
   const handleSubmit = (e) => {
     e.preventDefault();
-    if(currentId===0){
-      dispach(createPost(postData,navigate));
+    if(currentId===0){//if currentId is not set
+      dispach(createPost(postData,navigate));// creating a post
       clear();
-    }else{
+    }else{//if currentId is set
       dispach(updatePost(currentId,postData,navigate));
       dispach(getPosts());
       clear();
     }
   }
 
+  //clear function clears the form , it sets the time
   const clear = () => {
     setCurrentId(0);
-    seteTime(null);
+    seteTime(null);//setting form displayed value as null
     setPostData({organizer: "", title: "", date:null, time:null,venue:"", message: "", tags: "", event_poster:""})
   }
 
+  //if user isn't login then we aren't returning a form instead we are returning a below inforamation
   if(!user?.result?.name){
     return(
       <Paper className='paper'>
@@ -55,12 +65,14 @@ const Form = ({currentId,setCurrentId}) => {
     )
   }
 
+  //code for form
   return (
       <Paper className='paper' style={{padding: '10px 16px 16px 16px',marginTop:'32px'}}>
         <form  style={{marginTop:'12px'}} autoComplete="off" noValidate className='form' onSubmit={handleSubmit}>
         <Typography variant="h6">{currentId ? `Editing` : `Creating`} a College Event</Typography>
         <TextField name="organizer" variant="outlined" label="Organizer" fullWidth value={postData.organizer} onChange={(e) => setPostData({ ...postData, organizer: e.target.value })} style={{margin:'8px 0'}}/>
         <TextField name="title" variant="outlined" label="Title" fullWidth value={postData.title} onChange={(e) => setPostData({ ...postData, title: e.target.value })} style={{margin:'8px 0px'}}/>
+        {/* code for date picker option */}
         <LocalizationProvider dateAdapter={AdapterDayjs}>
           <DatePicker
             label="Date"
@@ -69,10 +81,13 @@ const Form = ({currentId,setCurrentId}) => {
             renderInput={(params) => <TextField style={{margin:'8px 0px'}} fullWidth {...params} helperText='click on Icon to select date'/>}/>
         </LocalizationProvider>
         {/* <TextField name="date" variant="outlined" label="Date" fullWidth value={postData.date} onChange={(e) => setPostData({ ...postData, date: e.target.value })} style={{margin:'8px 0px'}}/> */}
+        {/* code for timepicker option */}
         <LocalizationProvider dateAdapter={AdapterDayjs}>
           <TimePicker
             label="Time"
-            value={eTime}
+            value={eTime} //if we select the time in given format , then only it shows the time in correct manner
+            //but original format is clumsy and iincludes other useless info. So we are setting time with desire format
+            //but for form saving keeping its value as required by timepicker
             onChange={(e) => {setPostData({ ...postData, time:new Date(e).toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true }) });seteTime(e);}}
             renderInput={(params) => <TextField style={{margin:'8px 0px'}} fullWidth {...params} helperText='click on Icon to select time'/>}
           />
@@ -85,7 +100,7 @@ const Form = ({currentId,setCurrentId}) => {
           <FileBase
             type="file"
             multiple={false}
-            onDone={({ base64 }) =>
+            onDone={({ base64 }) => //this converts the image file into string
               setPostData({ ...postData, event_poster: base64 })
             }
             style={{margin:'8px 0px'}}

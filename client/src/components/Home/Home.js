@@ -17,17 +17,16 @@ function useQuery(){
 
 const Home = () => {
   const dispatch = useDispatch()
-  const [currentId,setCurrentId] = useState(0);
+  const [currentId,setCurrentId] = useState(0);//this id gets set when we click on update button
   const [search,setSearch] = useState(''); //it contains the strings to search in the title
-  const [tags,setTags] = useState([]);
-  // const location = useLocation();
-  const navigate = useNavigate();
+  const [tags,setTags] = useState([]);//tags to apply on each post
+
+  const navigate = useNavigate();//to navigate to different locations
   const query = useQuery();//usequery will search in the url 
-  const page = query.get('page') || 1;
-  // const searchQuery = query.get('searchQuery');
+  const page = query.get('page') || 1; //get the page number from a URL query key='page' value=pageNumber
 
   const handleKeyPress = (e) => {
-    if(e.keyCode === 13){
+    if(e.keyCode === 13){ //13 is a keycode for enter
       searchPost();
     };
   };
@@ -54,12 +53,15 @@ const Home = () => {
   // },[currentId , dispatch ])
 
   return (
-      <Grow in>
+      <Grow in>{/* adds a grow animation to when child components render*/}
         <Container maxWidth='xl'>
           <Grid container justifyContent='space-between' alignItems="stretch" spacing={3}>
-            <Grid item xs={12} sm={6} md={9}>
+            {/*posts*/}
+            <Grid item xs={12} sm={6} md={9}>{/*small:600px md:900px */}
+            {/*so here 12 is a full length so if screen is larger than sm and lower than md then it will show 6/12 width for posts*/}
               <Posts setCurrentId = {setCurrentId}/>
             </Grid>
+            {/*pagination bar + search event + form*/}
             <Grid item xs={12} sm={6} md={3}>
               <Paper elevation={6}>
                 <Paginate page={page}/>
@@ -69,6 +71,7 @@ const Home = () => {
                 <TextField name='search' variant='outlined' label='Enter event title' fullWidth value={search} onChange={(e)=>setSearch(e.target.value)}
                  onKeyDown={handleKeyPress}/>
                   <MuiChipsInput label="Enter Tags" value={tags} onAddChip={settingTag} onDeleteChip={deleteHandler} style={{marginTop:'10px'}} fullWidth/>
+                  {/*this will provide chips for tags we enter*/}
                   <Button color='primary' variant='contained' onClick={searchPost} style={{marginTop:'10px'}}>Search</Button>
               </AppBar>
               <Paper elevation={6}>
@@ -109,3 +112,4 @@ export default Home;
         };
       }
       */
+     //gutterbottom - leaves the bottom margin

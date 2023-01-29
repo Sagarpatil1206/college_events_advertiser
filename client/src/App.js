@@ -8,14 +8,16 @@ import PostDetails from './components/PostDetails/PostDetails';
 import NoMatch from './pictures/NoMatch';
 import NoSearchMatch from './pictures/NoSearchMatch';
 
+//client side routing
 const App = () => {
   return (
-    <BrowserRouter>
+    <BrowserRouter> {/*It is the parent component used to store all other components.*/}
       <Container maxWidth='xl'>
         <Navbar/>
         <Routes>
           <Route path='/posts' index element={<Home/>}></Route>
           <Route path='/' element={<Navigate to='/posts' replace/>}></Route>
+          {/*If route is / then it will redirect to /posts which will lead to home page*/}
           <Route path='/auth' element={<Auth/>}></Route>
           <Route path='/posts/search/notmatch' element={<NoSearchMatch/>}></Route>
           <Route path='/posts/search' element={<Home/>}></Route>
