@@ -1,4 +1,4 @@
-import { Button, Paper, TextField, Typography } from '@mui/material';
+import { Button, Paper, TextField, Typography ,Divider} from '@mui/material';
 // import { width } from '@mui/system';
 import React from 'react';
 // import { useRef } from 'react';
@@ -40,8 +40,10 @@ const CommentSection = ({post}) => {
             </Paper>
           )
         }
+        
           {/* <div ref={commentsRef}/> */}
         </div>{/*Write comments */}
+        <Divider style={{margin:'10px 0'}}/>
         {user?.result?.name ? (//if user is logged in only then render below content
         <div className='writeComment'>
           <Typography gutterBottom variant='h6'>Write a comment</Typography>
@@ -51,7 +53,7 @@ const CommentSection = ({post}) => {
         </div>
         ) : (//if user isn't logged in then render this
           <Paper elevation={2} style={{padding:'10px'}}>
-            <Typography variant='h6' align='center' style={{marginTop:'50px'}}>Sign in to comment on this post</Typography>
+            <Typography variant='h6' align='center' style={{marginTop:'30px'}}>Sign in to comment on this post</Typography>
           </Paper>
         )
         }
