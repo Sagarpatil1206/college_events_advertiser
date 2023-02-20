@@ -1,4 +1,4 @@
-import { CircularProgress, Divider, Paper, Typography } from '@mui/material';
+import { CircularProgress, Divider, Paper, Typography ,useMediaQuery} from '@mui/material';
 import moment from 'moment';
 import React, { useRef } from 'react';
 import { useEffect } from 'react';
@@ -16,6 +16,7 @@ const PostDetails = () => {
   const {id} = useParams();
   //as we are on pagedetails page , as per routing we will have id as a parameter on URL
   const scrollToRef = useRef();
+  const isMobileScreen = useMediaQuery('(min-width:500px)');
   //Here useRef Hook is used to scroll to top section when navigate to new page through recommmended posts
 
   useEffect(()=> {
@@ -50,8 +51,9 @@ const PostDetails = () => {
 
   //code for postDetails page
   return (
-    <Paper elevation={6} className='mainpaper'>
-        <div className='card' style={{display:'flex' ,flexDirection:'row'}}>
+    <Paper elevation={6} className='mainpaper' style={{wordWrap:'break-word'}}>
+      {isMobileScreen ?
+        (<div className='card' style={{display:'flex' ,flexDirection:'row'}}>
           <div className='section' ref={scrollToRef}>
             <Typography variant='h3' component='h2'>{post.title}</Typography>
             <Typography variant='h6'>Organizer : {post.organizer}</Typography>
@@ -70,6 +72,28 @@ const PostDetails = () => {
             <img src={post.event_poster} alt={post.title} style={{borderRadius:'20px',objectFit:'cover',width:'100%',maxHeight:'500px',minWidth:'500px'}}/>
           </div>
         </div>
+        ) : (
+          <div className='card' style={{display:'flex' ,flexDirection:'column',left:'0px',right:'0px'}}>
+          <div className='section' ref={scrollToRef} style={{margin:'13px'}}>
+            <Typography style={{fontSize:'35px'}} component='h2'>{post.title}</Typography>
+            <Typography variant='h6'>Organizer : {post.organizer}</Typography>
+            <Typography variant='h6' color="textSecondary" component='h2'>{post.tags.map((tag)=> `#${tag} `)}</Typography>
+            <div className='imagesection' style={{margin:'10px 0px'}}>
+              <img src={post.event_poster} alt={post.title} style={{borderRadius:'20px',objectFit:'cover',width:'100%',maxHeight:'500px',minWidth:'260px'}}/>
+            </div>
+            <Typography variant='body1' component='p' style={{whiteSpace:'pre-wrap'}} dangerouslySetInnerHTML={{ __html: urlify_message(post.message) }}/>
+            
+            <Typography variant='body1'>Created {moment(post.createdAt).fromNow()}</Typography>{/*calculate time from now to event created date */}
+            <Divider style={{margin:'20px 0'}}/>
+
+            <CommentSection post={post} key={post._id}/>
+
+            {/* <Typography variant='body1'><strong>Comment - comming soon !!!</strong></Typography> */}
+            <Divider style={{margin:'20px 0'}}/>
+          </div>
+        </div>
+        )
+}
         {
           recommended_posts.length && ( //if recommended_posts number isn't 0 only perform next code
             <div> {/* for whole recommended posts section */}
