@@ -55,6 +55,9 @@ const Home = () => {
   return (
       <Grow in>{/* adds a grow animation to when child components render*/}
         <Container maxWidth='xl'>
+            <Paper elevation={6} style={{borderRadius:'6px'}}>
+              <Paginate page={page}/>
+            </Paper>
           <Grid container justifyContent='space-between' alignItems="stretch" spacing={3}>
             {/*posts*/}
             <Grid item xs={12} sm={6} md={9}>{/*small:600px md:900px */}
