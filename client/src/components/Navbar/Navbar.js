@@ -1,6 +1,7 @@
 import React from 'react';
 import pict_logo from '../../pictures/pict_logo.png'
-import { AppBar,Avatar,Button,Dialog,DialogContent,DialogContentText,DialogTitle,Toolbar,Typography } from '@mui/material';
+import { AppBar,Avatar,Button,Dialog,DialogContent,DialogContentText,DialogTitle,Toolbar,Typography,useMediaQuery,IconButton, Paper, MenuItem } from '@mui/material';
+import {Menu} from '@mui/icons-material';
 import './Styles.css'
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
@@ -9,9 +10,12 @@ import { useDispatch } from 'react-redux';
 import { LOGOUT } from '../../actions/actionTypes';
 import decode from 'jwt-decode'
 
+
+
 const Navbar = () => {
   const [user,setUser] = useState(JSON.parse(localStorage.getItem('profile')));
   const [open,setOpen] = useState(false);
+  const [isMobileMenuToggeled,setMobileMenuToggled] = useState(false);
   //open variable is use for dialog box if opne=true dialog box is open otherwise its close
   // console.log(user);
   const location = useLocation();
@@ -20,6 +24,9 @@ const Navbar = () => {
   //return dispatch method which is use to dispatch actions as needed
   const navigate = useNavigate();
   //return navigate method which can redirect us to location given in parameter
+
+  const isMobileScreen = useMediaQuery('(min-width:500px)');
+
 
   const logoutHandler = () => {//this function dispatches the logout action
     //then redirect us to a home page and sets a user as null as user is logout
@@ -69,6 +76,7 @@ const Navbar = () => {
     </Dialog>
 
     {/*Actual Appbar */}
+    {isMobileScreen && 
     <AppBar className='appbar' position="static" color="inherit" 
       style={{display:'flex' , flexDirection:'row' ,borderRadius:'15px',margin:'30px 8px',padding:'5px 60px',alignItems:'center'}}>
 
@@ -76,7 +84,7 @@ const Navbar = () => {
       <div className='brandContainer'>
         <Link to='/' style={{display:'flex',alignItems:'center',textDecoration:'none',color:'black'}}>{/*so when someone click on logo or name it will redirect us to home page */}
         <img className='image' src={pict_logo} alt='pict_logo' height="80px" width="80px" style={{margin:'5px 15px'}}></img>
-          <Typography className='heading' variant='h3' align='center' width='315px'>PICT EVENTS</Typography>
+          <Typography className='heading' variant='h3' align='center' width='100%'>PICT EVENTS</Typography>
         </Link>
       </div>
 
@@ -99,8 +107,27 @@ const Navbar = () => {
               </div>
             )
         }
+        
       </Toolbar>
     </AppBar>
+}
+    {!isMobileScreen && 
+     <AppBar className='appbar' position="static" color="inherit" style={{display:'flex' , flexDirection:'row' ,borderRadius:'15px',margin:'10px 2px',padding:'5px 10px 5px 0px',alignItems:'center'}}>
+      <div className='brandContainer'>
+        <Link to='/' style={{display:'flex',alignItems:'center',textDecoration:'none',color:'black'}}>{/*so when someone click on logo or name it will redirect us to home page */}
+        <img className='image' src={pict_logo} alt='pict_logo' height="50px" width="50px" style={{margin:'5px 15px'}}></img>
+          <Typography className='heading' variant='h4' style={{fontSize:'31px'}} align='center' width='100%'>PICT EVENTS</Typography>
+        </Link>
+      </div>
+      <IconButton onClick={()=>setMobileMenuToggled(!isMobileMenuToggeled)} style={{left:'12px'}}><Menu /></IconButton>
+      {isMobileMenuToggeled && (
+        <Paper style={{position:'fixed',right:'5px', bottom:'0px' ,height:'15%',zIndex:'10',top:'82px'}}>
+          <MenuItem><Button component={Link} to='/' style={{marginRight:'20px'}} onClick={()=>setMobileMenuToggled(!isMobileMenuToggeled)}>Home</Button></MenuItem>
+          <MenuItem><Button component={Link} to='/auth' color='primary' onClick={()=>setMobileMenuToggled(!isMobileMenuToggeled)}>Sign In</Button></MenuItem>
+        </Paper>
+      )}
+     </AppBar>
+    }
     </>
   );
 };
