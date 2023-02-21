@@ -128,7 +128,7 @@ const Navbar = () => {
       )}
       {isMobileMenuToggeled && user?.result && (
         <Paper style={{position:'fixed',right:'5px', bottom:'0px' ,height:'15%',zIndex:'10',top:'82px'}}>
-          <MenuItem><Button component={Link} to='/' style={{marginRight:'20px'}} onClick={()=>setMobileMenuToggled(!isMobileMenuToggeled)}>Form</Button></MenuItem>
+          <MenuItem><Button component={Link} to='/' style={{marginRight:'20px'}} onClick={()=>setMobileMenuToggled(!isMobileMenuToggeled)}>Home</Button></MenuItem>
           <MenuItem><Button  color='primary' onClick={()=>{setMobileMenuToggled(!isMobileMenuToggeled);handleClickOpen();}}>LOGOUT</Button></MenuItem>
         </Paper>
       )
