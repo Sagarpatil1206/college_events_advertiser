@@ -78,7 +78,7 @@ const Navbar = () => {
     {/*Actual Appbar */}
     {isMobileScreen && 
     <AppBar className='appbar' position="static" color="inherit" 
-      style={{display:'flex' , flexDirection:'row' ,borderRadius:'15px',margin:'30px 8px',padding:'5px 10px 5px 60px',alignItems:'center'}}>
+      style={{display:'flex' , flexDirection:'row' ,borderRadius:'15px',margin:'30px 8px',padding:'5px 60px',alignItems:'center'}}>
 
       {/*LOGO and Name of website */}
       <div className='brandContainer'>
@@ -92,16 +92,13 @@ const Navbar = () => {
       <Toolbar className='toolbar'>
         {
           user?.result ? ( //if user is present i.e. if logged in
-          <div className='navend'>
             <div className='profile'>
               <Avatar className='purple' alt={user?.result.name} src={user?.result.picture}
-              style={{color:'white',backgroundColor:'#1976D2',marginRight:'20px'}}>{user?.result.name.charAt(0)}</Avatar>
+              style={{color:'white',backgroundColor:'#1976D2'}}>{user?.result.name.charAt(0)}</Avatar>
               <Typography className='userName' variant='h6'>{user?.result.name}</Typography>
-              </div>
-              <Button variant='contained' style={{backgroundColor:'#1976D2',marginRight:'10px'}} onClick={handleClickOpen}>Logout</Button>
+              <Button variant='contained' style={{backgroundColor:'#1976D2'}} onClick={handleClickOpen}>Logout</Button>
               {/*After clicking on logout we are setting the open=true rhroughh handleclickopen which opens a dialogbox */}
               {/* <Button component={Link} to='/'variant='contained' style={{marginRight:'30px'}} >Home</Button> */}
-              <Button component={Link} to='/posts/form' variant='contained' >Form</Button>
             </div>
           ) : ( //if not logged in
               <div>
