@@ -84,7 +84,7 @@ const Navbar = () => {
       <div className='brandContainer'>
         <Link to='/' style={{display:'flex',alignItems:'center',textDecoration:'none',color:'black'}}>{/*so when someone click on logo or name it will redirect us to home page */}
         <img className='image' src={pict_logo} alt='pict_logo' height="80px" width="80px" style={{margin:'5px 15px'}}></img>
-          <Typography className='heading' variant='h3' align='center' width='100%'>PICT EVENTS</Typography>
+          <Typography className='heading' variant='h3' align='center' width='100%' style={{whiteSpace:'nowrap'}}>PICT EVENTS</Typography>
         </Link>
       </div>
 
