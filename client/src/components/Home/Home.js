@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {Container,Grow,Grid, Paper, AppBar, TextField, Button, Typography} from '@mui/material'
+import {Container,Grow,Grid, Paper, AppBar, TextField, Button, Typography,useMediaQuery} from '@mui/material'
 import { MuiChipsInput } from 'mui-chips-input'
 
 import Form from '../Form/Form';
@@ -20,6 +20,8 @@ const Home = () => {
   const [currentId,setCurrentId] = useState(0);//this id gets set when we click on update button
   const [search,setSearch] = useState(''); //it contains the strings to search in the title
   const [tags,setTags] = useState([]);//tags to apply on each post
+  
+  const isMobileScreen = useMediaQuery('(min-width:500px)');
 
   const navigate = useNavigate();//to navigate to different locations
   const query = useQuery();//usequery will search in the url 
@@ -55,9 +57,11 @@ const Home = () => {
   return (
       <Grow in>{/* adds a grow animation to when child components render*/}
         <Container maxWidth='xl'>
-            <Paper elevation={6} style={{borderRadius:'6px'}}>
-              <Paginate page={page}/>
-            </Paper>
+            { !isMobileScreen &&
+              <Paper elevation={6} style={{borderRadius:'6px'}}>
+                <Paginate page={page}/>
+              </Paper>
+           }
           <Grid container justifyContent='space-between' alignItems="stretch" spacing={3}>
             {/*posts*/}
             <Grid item xs={12} sm={6} md={9}>{/*small:600px md:900px */}
