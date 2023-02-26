@@ -1,5 +1,20 @@
 # college_events_host
 Here We take input from the organizer about the event and asked to fill him/her to fill the information about the event , like organizer event name , venue, date ,its poster etc. Then we create a card out of it stating all this information.Card also havew the option of like and delete as well.
+Frontend :
+Front-end
+    ReactJS - Frontend framework
+    Redux with useDispatch & useSelector hooks - For state management
+    Redux Thunk - For asynchronous actions
+    React Router - For general routing & navigation
+    Material-UI w/ lots of CSS customisations - UI library
+Back-end
+    Node.js - Runtime environment for JS
+    Express.js - Node.js framework, makes process of building APIs easier & faster
+    MongoDB - Database to store document-based data
+    Mongoose - MongoDB object modeling for Node.js
+    JSON Web Token - A standard to secure/authenticate HTTP requests
+    Bcrypt.js - For hashing passwords
+    Dotenv - To load environment variables from a .env file
 ![Screenshot (1475)](https://user-images.githubusercontent.com/86339914/215329572-fdc293c4-8fd3-451c-aba6-a54f70723e80.png)
 ![Screenshot (1466)](https://user-images.githubusercontent.com/86339914/215329580-2e552077-c83d-46fd-aa3d-6c0d830c2cbe.png)
 ![pd1 (2)](https://user-images.githubusercontent.com/86339914/215330305-b2df1da0-f946-4d0b-b64a-14dfe463437e.png)
