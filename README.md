@@ -1,4 +1,4 @@
-# college_events_host
+# College Events
 <pre>
 Introduction : 
     In college, various clubs organize events throughout the year. Typically, information about 
