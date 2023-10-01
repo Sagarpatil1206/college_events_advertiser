@@ -5,7 +5,7 @@ Introduction :
     these events is shared via WhatsApp groups.It would be helpful to have a website where all
     the events and related information could be stored. This would make it easier for students
     to find relevant information about ongoing, past, or upcoming events. Such a website would
-    benefit both students and college/college clubs.
+    benefit both students and college clubs.
 Front-end : 
     ReactJS - Frontend framework
     Redux with useDispatch & useSelector hooks - For state management
@@ -20,8 +20,6 @@ Back-end :
     JSON Web Token - A standard to secure/authenticate HTTP requests
     Bcrypt.js - For hashing passwords
     Dotenv - To load environment variables from a .env file
-Chat server :
-    Socket.io - For real time communication
 </pre>
 Deployed Website Link : (https://college-events.onrender.com)
 
