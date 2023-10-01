@@ -21,7 +21,8 @@ Back-end :
     Bcrypt.js - For hashing passwords
     Dotenv - To load environment variables from a .env file
 </pre>
-Deployed Website Link : (https://college-events.onrender.com)
+Deployed Website Link : https://college-events.onrender.com<br>
+Video link explaining my project : https://vimeo.com/869995229/7b2093bdbb?share=copy
 
 ![Screenshot (1475)](https://user-images.githubusercontent.com/86339914/215329572-fdc293c4-8fd3-451c-aba6-a54f70723e80.png)
 ![Screenshot (1466)](https://user-images.githubusercontent.com/86339914/215329580-2e552077-c83d-46fd-aa3d-6c0d830c2cbe.png)
